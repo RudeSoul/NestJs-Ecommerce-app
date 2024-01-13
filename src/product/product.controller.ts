@@ -16,6 +16,7 @@ import { FilterProductDTO } from './dtos/filter-product.dto';
 @Controller('store/product')
 export class ProductController {
   constructor(private productService: ProductService) {}
+
   @Get('./')
   async getProducts(@Query() filterProductDTO: FilterProductDTO) {
     if (Object.keys(filterProductDTO).length) {
@@ -53,6 +54,7 @@ export class ProductController {
     if (!product) throw new NotFoundException('Product does not exist!');
     return product;
   }
+
   @Delete('/:id')
   async deleteProduct(@Param('id') id: string) {
     const product = await this.productService.deleteProduct(id);
